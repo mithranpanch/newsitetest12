@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SONDER GROUND | Videos</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body.videos-page {
+      background-color: #000;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      text-align: center;
+      padding: 0;
+      margin: 0;
+    }
+
+    .site-logo {
+      height: 400px;
+      display: block;
+      margin: 0 auto;
+    }
+
+    .video-title {
+      text-align: center;
+      font-size: 2rem;
+      margin: 2rem 0 1rem;
+      letter-spacing: 2px;
+    }
+
+    .video-carousel {
+      position: relative;
+      max-width: 100%;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .carousel-video {
+      display: none;
+      width: 90%;
+      max-width: 800px;
+      border-radius: 10px;
+    }
+
+    .carousel-video.active {
+      display: block;
+    }
+
+    .carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(255, 255, 255, 0.2);
+      border: none;
+      font-size: 2rem;
+      color: white;
+      cursor: pointer;
+      z-index: 10;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    .carousel-btn:hover {
+      background-color: rgba(255, 255, 255, 0.4);
+    }
+
+    .carousel-btn.left {
+      left: 2%;
+    }
+
+    .carousel-btn.right {
+      right: 2%;
+    }
+
+    .featured-video {
+      text-align: center;
+      margin: 3rem 0;
+    }
+
+    .featured-video video {
+      width: 90%;
+      max-width: 800px;
+      border-radius: 10px;
+    }
+
+    /* Mobile styles */
+    @media screen and (max-width: 768px) {
+      .site-logo {
+        height: 200px;
+        width: auto;
+        margin-top: 1rem;
+      }
+
+      .video-title {
+        font-size: 1.5rem;
+        margin: 1rem 0;
+      }
+
+      .carousel-btn {
+        font-size: 1.5rem;
+        padding: 0.3rem 0.7rem;
+      }
+
+      .nav-menu {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0;
+        margin: 1rem 0;
+      }
+
+      .nav-menu li {
+        list-style: none;
+      }
+
+      .nav-menu a {
+        font-size: 1rem;
+        color: white;
+        text-decoration: none;
+      }
+    }
+  </style>
+</head>
+<body class="videos-page">
+  <!-- Header -->
+  <header>
+    <img src="images/logo2.png" alt="Mithran Logo" class="site-logo" />
+    <nav>
+      <ul class="nav-menu">
+        <li><a href="index.html">HOME</a></li>
+        <li><a href="music.html">MUSIC</a></li>
+        <li><a href="mixes.html">SETS</a></li>
+        <li><a href="videos.html">VIDEOS</a></li>
+        <li><a href="media.html">MEDIA</a></li>
+        <li><a href="contact.html">CONTACT</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Sonder Ground -->
+  <h2 class="video-title">SONDER GROUND</h2>
+  <div class="video-carousel">
+    <button class="carousel-btn left" onclick="changeVideo(-1)">&#10094;</button>
+
+    <video class="carousel-video active" controls>
+      <source src="videos/vid1.mp4" type="video/mp4" />
+    </video>
+    <video class="carousel-video" controls>
+      <source src="videos/vid2.mp4" type="video/mp4" />
+    </video>
+    <video class="carousel-video" controls>
+      <source src="videos/vid3.mp4" type="video/mp4" />
+    </video>
+    <video class="carousel-video" controls>
+      <source src="videos/vid4.mp4" type="video/mp4" />
+    </video>
+    <video class="carousel-video" controls>
+      <source src="videos/vid5.mp4" type="video/mp4" />
+    </video>
+
+    <button class="carousel-btn right" onclick="changeVideo(1)">&#10095;</button>
+  </div>
+
+  <!-- Springfield Set -->
+  <div class="featured-video">
+    <h2 class="video-title">SPRINGFIELD</h2>
+    <video controls>
+      <source src="videos/springvid.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+  </div>
+
+  <!-- Carousel Script -->
+  <script>
+    let current = 0;
+    const videos = document.querySelectorAll('.carousel-video');
+
+    function changeVideo(direction) {
+      videos[current].pause();
+      videos[current].currentTime = 0;
+      videos[current].classList.remove('active');
+
+      current = (current + direction + videos.length) % videos.length;
+      videos[current].classList.add('active');
+    }
+  </script>
+</body>
+</html>
